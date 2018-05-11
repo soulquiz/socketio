@@ -23,9 +23,15 @@
                     <input type="text" id="chat-message" class="box" autocomplete="off" placeholder="Enter message here...">
 
                 </form>
+                <button id="hello" type="button">hello</button>
             </ul>
         </div>
+        <table id="ta">
+            hell
+        </table>
     </div>
+
+    
 
     <script>
         var socket = io();
@@ -36,8 +42,18 @@
             return false;
         });
         
+        $('#hello').click(function() {
+            socket.emit('delete');
+        });
+        
+        
+
         socket.on('status', function(status) {
             $("#status").html(status);
+        });
+
+        socket.on('fileList', function(fileList) {
+            console.log(fileList)
         });
 
         socket.on('chat', function(message) {
