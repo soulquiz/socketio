@@ -16,6 +16,9 @@
     <div class="box box--container">
         <div class="box box--chat">
             <ul id="chat-history">
+                <p id="status">
+                    
+                </p>
                 <form action="/" id="chat-form">
                     <input type="text" id="chat-message" class="box" autocomplete="off" placeholder="Enter message here...">
 
@@ -34,7 +37,7 @@
         });
         
         socket.on('status', function(status) {
-            
+            $("#status").html(status);
         });
 
         socket.on('chat', function(message) {

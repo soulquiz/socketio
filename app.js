@@ -20,18 +20,18 @@ var client = 0;
 io.on('connection', function(socket) {
     console.log('a user connected');
     client++;
-    socket.on('status', function(message) {
-        io.emit('status', client + ' client connected');
-    });
+    
+    io.emit('status', client + ' client connected');
+    
 
     socket.on('chat', function(message) {
         io.emit('chat', message)
     });
 
-    socket.on('disconnection', function() {
+    socket.on('disconnect', function() {
         client--;
-        socket.on('status', function(message) {
-            io.emit('status', client + ' client connected');
-        });
+        console.log('discconnected')
+        io.emit('status', client + ' client connected');
+        
     });
 });
