@@ -32,6 +32,10 @@
             socket.emit('chat', $('#chat-message').val());
             return false;
         });
+        
+        socket.on('status', function(status) {
+            
+        });
 
         socket.on('chat', function(message) {
             $('#chat-history').append($('<li class="message">').text(message));

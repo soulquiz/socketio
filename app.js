@@ -16,11 +16,22 @@ app.get('/', function(req, res) {
 });
 
 var io = require('socket.io').listen(server);
-
+var client = 0;
 io.on('connection', function(socket) {
     console.log('a user connected');
+    client++;
+    socket.on('status', function(message) {
+        io.emit('status', client + ' client connected');
+    });
 
     socket.on('chat', function(message) {
         io.emit('chat', message)
+    });
+
+    socket.on('disconnection', function() {
+        client--;
+        socket.on('status', function(message) {
+            io.emit('status', client + ' client connected');
+        });
     });
 });
