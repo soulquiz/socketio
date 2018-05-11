@@ -4,7 +4,7 @@
   "description": "nodejs socket io",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -17,10 +17,8 @@
   },
   "homepage": "https://github.com/soulquiz/socketio#readme",
   "dependencies": {
+    "ejs": "^2.6.1",
     "express": "^4.16.3",
     "socket.io": "^2.1.0"
-  },
-  "scripts": {
-    "start": "node index.js"
   }
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Realtime Application</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="box box--container">
+        <div class="box box--chat">
+            <ul id="chat-history">
+                <form action="/" id="chat-form">
+                    <input type="text" id="chat-message" class="box" autocomplete="off" placeholder="Enter message here...">
+
+                </form>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var socket = io();
+
+        $('#chat-form').submit(function () {
+
+            socket.emit('chat', $('#chat-message').val());
+            return false;
+        });
+
+        socket.on('chat', function(message) {
+            $('#chat-history').append($('<li class="message">').text(message));
+        });
+
+    </script>
+
+</body>
+
+</html>
